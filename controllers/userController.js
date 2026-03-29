@@ -8,7 +8,7 @@ const createUser = async (req, res, next) => {
     } catch (err) {
         next(err) // go to global error handler 
     }
-};
+}
 
 // Read All 
 const getUsers = async (req, res, next) => {
@@ -18,4 +18,43 @@ const getUsers = async (req, res, next) => {
     } catch (err) {
         next(err)
     }
+}
+
+// Read one user
+const getUser = async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.param.id, req.body, {new: true})
+
+        if (!user) {
+            const err = new Error('User not found')
+            err.status = 404
+            return next(err)
+        }
+    } catch (err) {
+        next(err)
+    }
+}
+
+//Delete User
+const deleteUser = async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndDelete(req.param.id)
+
+        if (!user) {
+            const err = new Error('User not found')
+            err.status = 404
+            return next(err)
+        }
+        res.send('User Deleted')
+    } catch (err) {
+        next(err)
+    }
+}
+
+module.exports = {
+    createUser,
+    getUser,
+    getUsers,
+    updateUsers,
+    deleteUsers
 }
