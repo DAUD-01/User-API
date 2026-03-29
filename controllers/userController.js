@@ -6,7 +6,7 @@ const createUser = async (req, res, next) => {
         const user = await User.create(req.body)
         res.status(201).json(user) 
     } catch (err) {
-        next(err) // go to global error handler 
+        next(err) // go to global error handler
     }
 }
 
@@ -19,7 +19,6 @@ const getUsers = async (req, res, next) => {
         next(err)
     }
 }
-
 // Read one user
 const getUser = async (req, res, next) => {
     try {
