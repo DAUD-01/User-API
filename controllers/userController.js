@@ -23,7 +23,7 @@ const getUsers = async (req, res, next) => {
 // Read one user
 const getUser = async (req, res, next) => {
     try {
-        const user = await User.findById(req.param.id)
+        const user = await User.findById(req.params.id)
 
         if (!user) {
             const err = new Error('User not found')
@@ -37,7 +37,7 @@ const getUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
     try {
-        const user = await User.findByIdAndUpdate(req.param.id, req.body, {new: true})
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
 
         if (!user) {
             const err = new Error('User not found')
@@ -52,7 +52,7 @@ const updateUser = async (req, res, next) => {
 //Delete User
 const deleteUser = async (req, res, next) => {
     try {
-        const user = await User.findByIdAndDelete(req.param.id)
+        const user = await User.findByIdAndDelete(req.params.id)
 
         if (!user) {
             const err = new Error('User not found')
