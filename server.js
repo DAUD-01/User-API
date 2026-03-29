@@ -5,6 +5,7 @@ const connectDB = require('./config/db')
 const userRoutes = require('./routes/userRoutes')
 const errorHandler = require('./middleware/errorMiddleware')
 
+const app = express()
 app.use(express.json())
 
 connectDB()
